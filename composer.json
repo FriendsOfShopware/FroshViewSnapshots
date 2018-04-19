@@ -1,0 +1,16 @@
+{
+  "name": "FriendsOfShopware/frosh-view-snapshots",
+  "keywords": ["views", "snapshot", "recording", "frontend", "template", "restore", "shopware", "shopware-plugin"],
+  "description": "Shopware plugin that allows you to record/log views and restore them",
+  "license": "MIT",
+  "type": "shopware-plugin",
+  "extra": {
+    "installer-name": "FroshViewSnapshots"
+  },
+  "require": {
+    "composer/installers": "~1.0"
+  },
+  "scripts": {
+    "test": "phpunit -c tests"
+  }
+}

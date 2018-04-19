@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../engine/Shopware/Components/Plugin/schema/menu.xsd">
+    <entries>
+        <entry>
+            <name>View Snapshots</name>
+            <label lang="en">View Snapshots</label>
+            <label lang="de">View Snapshots</label>
+            <controller>ViewSnapshots</controller>
+            <action>index</action>
+            <class>sprite-gear</class>
+            <parent identifiedBy="controller">ConfigurationMenu</parent>
+        </entry>
+    </entries>
+</menu>
