@@ -1,6 +1,5 @@
 # View Snapshots
 
-[![Scrutinizer](https://scrutinizer-ci.com/g/FriendsOfShopware/FroshViewSnapshots/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/FriendsOfShopware/FroshViewSnapshots/?branch=master)
 [![Travis CI](https://travis-ci.org/FriendsOfShopware/FroshViewSnapshots.svg?branch=master)](https://travis-ci.org/FriendsOfShopware/FroshViewSnapshots)
 
 View Snapshots is a plugin for shopware that allows you to record/log requests

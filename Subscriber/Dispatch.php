@@ -7,7 +7,6 @@ use Enlight\Event\SubscriberInterface;
 
 /**
  * Class Dispatch
- * @package FroshViewSnapshots\Subscriber
  */
 class Dispatch implements SubscriberInterface
 {
@@ -23,14 +22,14 @@ class Dispatch implements SubscriberInterface
 
     /**
      * Dispatch constructor.
+     *
      * @param \Enlight_Components_Session_Namespace $session
-     * @param Connection $connection
+     * @param Connection                            $connection
      */
     public function __construct(
         \Enlight_Components_Session_Namespace $session,
         Connection $connection
-    )
-    {
+    ) {
         $this->session = $session;
         $this->connection = $connection;
     }
@@ -63,7 +62,7 @@ class Dispatch implements SubscriberInterface
 
         $view->assign(
             [
-                'snapshotSessionID' => $snapshotSessionID ? : $sessionID,
+                'snapshotSessionID' => $snapshotSessionID ?: $sessionID,
                 'isSessionRecorded' => $isSessionRecorded,
             ]
         );
@@ -72,8 +71,7 @@ class Dispatch implements SubscriberInterface
             $snapshotSessionID ||
             !$isSessionRecorded ||
             $request->isXmlHttpRequest()
-        )
-        {
+        ) {
             return;
         }
 
@@ -86,8 +84,7 @@ class Dispatch implements SubscriberInterface
                 try {
                     // workaround for PDOException when trying to serialize PDO instances
                     serialize($value);
-                }
-                catch (\Throwable $e) {
+                } catch (\Throwable $e) {
                     // as we only need a snapshot for the view, remove the PDO instance
                     $value = null;
                 }
@@ -100,7 +97,7 @@ class Dispatch implements SubscriberInterface
         $params['__action'] = $request->getActionName();
         $params = json_encode($params);
 
-        $step = (int)$this->connection->fetchColumn(
+        $step = (int) $this->connection->fetchColumn(
             'SELECT MAX(`step`) FROM `view_snapshots` WHERE `sessionID` = :sessionID',
             ['sessionID' => $sessionID]
         );

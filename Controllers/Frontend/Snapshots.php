@@ -13,7 +13,7 @@ class Shopware_Controllers_Frontend_Snapshots extends \Enlight_Controller_Action
     public function loadAction()
     {
         $sessionID = $this->Request()->getParam('session');
-        $step = (int)$this->Request()->getParam('step', 1);
+        $step = (int) $this->Request()->getParam('step', 1);
 
         if (empty($sessionID)) {
             throw new \Exception(
@@ -37,12 +37,12 @@ class Shopware_Controllers_Frontend_Snapshots extends \Enlight_Controller_Action
             );
         }
 
-        $nextStep = (int)$this->get('dbal_connection')->fetchColumn(
+        $nextStep = (int) $this->get('dbal_connection')->fetchColumn(
             'SELECT MIN(`step`) as step FROM `view_snapshots` WHERE `sessionID` = :sessionID AND `step` > :step LIMIT 1',
             $sqlParams
         );
 
-        $prevStep = (int)$this->get('dbal_connection')->fetchColumn(
+        $prevStep = (int) $this->get('dbal_connection')->fetchColumn(
             'SELECT MAX(`step`) as step FROM `view_snapshots` WHERE `sessionID` = :sessionID AND `step` < :step LIMIT 1',
             $sqlParams
         );

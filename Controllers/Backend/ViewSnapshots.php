@@ -5,10 +5,9 @@
  */
 class Shopware_Controllers_Backend_ViewSnapshots extends Shopware_Controllers_Backend_ExtJs
 {
-
-    public function indexAction() 
+    public function indexAction()
     {
-        $this->View()->loadTemplate("backend/view_snapshots/app.js");
+        $this->View()->loadTemplate('backend/view_snapshots/app.js');
     }
 
     /**
@@ -16,8 +15,8 @@ class Shopware_Controllers_Backend_ViewSnapshots extends Shopware_Controllers_Ba
      */
     public function listAction()
     {
-        $limit = (int)$this->Request()->getParam('limit', 20);
-        $offset = (int)$this->Request()->getParam('start', 0);
+        $limit = (int) $this->Request()->getParam('limit', 20);
+        $offset = (int) $this->Request()->getParam('start', 0);
 
         $qb = $this->getModelManager()->getDBALQueryBuilder();
 
@@ -41,21 +40,19 @@ class Shopware_Controllers_Backend_ViewSnapshots extends Shopware_Controllers_Ba
         foreach ($data as &$row) {
             $row['url'] = $this->get('router')->assemble(
                 [
-                    'module'        => 'frontend',
-                    'controller'    => 'snapshots',
-                    'action'        => 'load',
-                    'session'       => $row['sessionID'],
-                    'step'          => $row['step'],
+                    'module' => 'frontend',
+                    'controller' => 'snapshots',
+                    'action' => 'load',
+                    'session' => $row['sessionID'],
+                    'step' => $row['step'],
                 ]
             );
         }
 
-        $total = (int)$this->container->get('dbal_connection')->fetchColumn('SELECT FOUND_ROWS()');
+        $total = (int) $this->container->get('dbal_connection')->fetchColumn('SELECT FOUND_ROWS()');
 
         $this->View()->assign(
             ['success' => true, 'data' => $data, 'total' => $total]
         );
     }
-    
 }
-

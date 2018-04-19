@@ -1,5 +1,5 @@
 {
-  "name": "frosh/frosh-view-snapshots",
+  "name": "frosh/view-snapshots",
   "keywords": ["views", "snapshot", "recording", "frontend", "template", "restore", "shopware", "shopware-plugin"],
   "description": "Shopware plugin that allows you to record/log views and restore them",
   "license": "MIT",
