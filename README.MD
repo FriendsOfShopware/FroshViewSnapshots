@@ -67,7 +67,7 @@ JavaScript console to issue commands:
 
 ### Install with composer
 * Change to your root installation of shopware
-* Run command `composer require frosh/frosh-view-snapshots` and install and activate plugin with Plugin Manager 
+* Run command `composer require frosh/view-snapshots` and install and activate plugin with Plugin Manager 
 
 ## Requirements
 
