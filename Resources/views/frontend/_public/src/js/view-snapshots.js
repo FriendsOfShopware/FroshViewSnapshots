@@ -96,4 +96,17 @@
         window.location.href = me.config.prevUrl;
     };
 
+    function createRecordingWindow()
+    {
+        var body = document.querySelector('body'),
+            state = 'Currently not recording..';
+
+        if (window.snapshots.config.isRecordingSnapshots) {
+            state = 'Recording!';
+        }
+
+        body.insertAdjacentHTML('afterbegin', '<style>\n    .recorder {\n        position: fixed;\n        width: 200px;\n        height: 200px;\n        bottom: 0;\n        right: 0;\n        background: white;\n        z-index: 99999;\n    }\n</style>\n<div class="recorder">\n    <span>'+ state + '</span>\n    <a onclick="snapshots.record()" class="btn is--primary">Record</a>\n    <a onclick="snapshots.stop()" class="btn is--primary">Stop Recording</a>\n</div> ');
+    }
+
+    createRecordingWindow();
 })(window);
