@@ -28,6 +28,11 @@ Ext.define('Shopware.apps.ViewSnapshots.view.Grid', {
                 dataIndex: 'template'
             },
             {
+                header: 'URI',
+                flex: 1,
+                dataIndex: 'requestURI'
+            },
+            {
                 header: 'Step',
                 dataIndex: 'step',
                 width: 40

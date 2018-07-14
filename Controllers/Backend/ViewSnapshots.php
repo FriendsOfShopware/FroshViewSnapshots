@@ -26,6 +26,7 @@ class Shopware_Controllers_Backend_ViewSnapshots extends Shopware_Controllers_Ba
                     'sessionID',
                     'template',
                     'step',
+                    'requestURI'
                 ]
             )
             ->from('view_snapshots')
