@@ -38,6 +38,7 @@
             function () {
                 me.config.isRecordingSnapshots = true;
 
+                me.updateRecorder();
                 console.log('▶️️ Recording of session starting next request. Session ID: ' + me.config.sessionId);
             },
             function () {
@@ -60,6 +61,7 @@
             function () {
                 me.config.isRecordingSnapshots = false;
 
+                me.updateRecorder();
                 console.log('✋️️ Stopped recording current session.');
             },
             function () {
@@ -67,7 +69,7 @@
             }
         );
     };
-
+ 
     window.snapshots.next = function() {
         var me = this;
 
@@ -96,17 +98,23 @@
         window.location.href = me.config.prevUrl;
     };
 
-    function createRecordingWindow()
-    {
-        var body = document.querySelector('body'),
-            state = 'Currently not recording..';
+    window.snapshots.updateRecorder = function() {
+        var me = this;
+        var recorderButton = document.getElementById('recorder-button');
+        var stateLabel = document.getElementById('recorder-state');
 
-        if (window.snapshots.config.isRecordingSnapshots) {
-            state = 'Recording!';
+        var stateText = 'Currently not recording...';
+        var buttonHTML = "<i class='icon--record'></i> Start Recording";
+        var buttonOnClick = 'snapshots.record()';
+
+        if(me.config.isRecordingSnapshots) {
+            stateText = 'Recording!'
+            buttonHTML = "<i class='icon--stop'></i> Stop Recording";
+            buttonOnClick ='snapshots.stop()';
         }
 
-        body.insertAdjacentHTML('afterbegin', '<style>\n    .recorder {\n        position: fixed;\n        width: 200px;\n        height: 200px;\n        bottom: 0;\n        right: 0;\n        background: white;\n        z-index: 99999;\n    }\n</style>\n<div class="recorder">\n    <span>'+ state + '</span>\n    <a onclick="snapshots.record()" class="btn is--primary">Record</a>\n    <a onclick="snapshots.stop()" class="btn is--primary">Stop Recording</a>\n</div> ');
+        stateLabel.innerHTML = stateText;
+        recorderButton.innerHTML = buttonHTML;
+        recorderButton.setAttribute("onclick", buttonOnClick);
     }
-
-    createRecordingWindow();
 })(window);
