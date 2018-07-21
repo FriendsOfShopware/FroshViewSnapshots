@@ -39,21 +39,35 @@
             line-height: 38px;
         }
 
-        .recorder .btn {
+        .recorder+.btn {
             margin-left: 15px;
         }
     </style>
     <div class="recorder">
-        {if $isSessionRecorded}
-            <span id="recorder-state">Recording!</span>
-            <a id="recorder-button" onclick="snapshots.stop()" class="btn is--primary">
-                <i class='icon--stop'></i> Stop Recording
-            </a>
+        {if $snapshotStep}
+            {if $snapshotPrevStep}
+                <a onclick="snapshots.prev()" class="btn is--primary">
+                    <i class='icon--previous'></i> Previous
+                </a>
+            {/if}
+            <span>Current step: {$snapshotStep}</span>
+            {if $snapshotNextStep}
+                <a onclick="snapshots.next()" class="btn is--primary">
+                    Next <i class='icon--next'></i>
+                </a>
+            {/if}
         {else}
-            <span id="recorder-state">Currently not recording...</span>
-            <a id="recorder-button" onclick="snapshots.record()" class="btn is--primary">
-                <i class='icon--record'></i> Start Recording    
-            </a>
-        {/if}        
+            {if $isSessionRecorded}
+                <span id="recorder-state">Recording!</span>
+                <a id="recorder-button" onclick="snapshots.stop()" class="btn is--primary">
+                    <i class='icon--stop'></i> Stop Recording
+                </a>
+            {else}
+                <span id="recorder-state">Currently not recording...</span>
+                <a id="recorder-button" onclick="snapshots.record()" class="btn is--primary">
+                    <i class='icon--record'></i> Start Recording    
+                </a>
+            {/if}
+        {/if}
     </div>
 {/block}
