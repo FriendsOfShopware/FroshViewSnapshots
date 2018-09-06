@@ -73,3 +73,7 @@ JavaScript console to issue commands:
 
 * Shopware 5.3.4 or higher
 * PHP 7.0
+
+## Dependencies
+
+* Depends on [finediff](https://github.com/gorhill/PHP-FineDiff) by Raymond Hill
