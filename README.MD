@@ -21,6 +21,7 @@ articles within the basket or the order confirmation.
 * Backend component to view recorded sessions
 * View recorded snapshots
 * Step forward/backward between snapshots within a recorded session
+* Compare recordings and their steps
 
 ## Usage
 
