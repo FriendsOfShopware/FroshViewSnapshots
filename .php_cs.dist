@@ -1,5 +1,5 @@
 <?php
-$finder = PhpCsFixer\Finder::create()->in(__DIR__ . '/');
+$finder = PhpCsFixer\Finder::create()->in(__DIR__ . '/')->exclude('lib');
 return PhpCsFixer\Config::create()
     ->setUsingCache(false)
     ->setRules(
