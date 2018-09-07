@@ -11,17 +11,32 @@ class Diff
         require_once implode(DIRECTORY_SEPARATOR, [__DIR__, '..', 'lib', 'finediff', 'finediff.php']);
     }
 
-    public function diffPlain(string $from, string $to): FineDiff
+    /**
+     * @param string $from
+     * @param string $to
+     * @return FineDiff
+     */
+    public function diffPlain($from, $to)
     {
         return new FineDiff($from, $to, FineDiff::$wordGranularity);
     }
 
-    public function diffSerialized(string $from, string $to): FineDiff
+    /**
+     * @param string $from
+     * @param string $to
+     * @return FineDiff
+     */
+    public function diffSerialized($from, $to)
     {
         return $this->diffPlain($this->prettyPrintSerialized($from), $this->prettyPrintSerialized($to));
     }
 
-    public function diffJson(string $from, string $to): FineDiff
+    /**
+     * @param string $from
+     * @param string $to
+     * @return FineDiff
+     */
+    public function diffJson($from, $to)
     {
         $fromData = json_decode($from, true);
         $toData = json_decode($to, true);
@@ -33,7 +48,12 @@ class Diff
         return $this->diffPlain($from, $to);
     }
 
-    public function diffArray(array $from, array $to): FineDiff
+    /**
+     * @param array $from
+     * @param array $to
+     * @return FineDiff
+     */
+    public function diffArray(array $from, array $to)
     {
         return $this->diffPlain(
             json_encode($this->sortArrayRecursive($from), JSON_PRETTY_PRINT),
@@ -41,7 +61,11 @@ class Diff
         );
     }
 
-    protected function sortArrayRecursive(array $data): array
+    /**
+     * @param array $data
+     * @return array
+     */
+    protected function sortArrayRecursive(array $data)
     {
         foreach ($data as &$value) {
             if (is_array($value)) {
@@ -54,7 +78,11 @@ class Diff
         return $data;
     }
 
-    protected function prettyPrintSerialized(string $serialized): string
+    /**
+     * @param string $serialized
+     * @return string
+     */
+    protected function prettyPrintSerialized($serialized)
     {
         return print_r(unserialize($serialized), true);
     }

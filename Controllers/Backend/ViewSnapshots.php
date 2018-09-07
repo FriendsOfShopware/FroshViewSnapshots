@@ -99,9 +99,12 @@ class Shopware_Controllers_Backend_ViewSnapshots extends Shopware_Controllers_Ba
     }
 
     /**
+     * @param string $sessionFrom
+     * @param int $stepFrom
+     * @return array
      * @throws Exception
      */
-    protected function getSnapshotStep(string $sessionFrom, int $stepFrom): array
+    protected function getSnapshotStep($sessionFrom, $stepFrom)
     {
         $qb = $this->getModelManager()->getDBALQueryBuilder();
 

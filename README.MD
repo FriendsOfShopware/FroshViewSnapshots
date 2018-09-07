@@ -73,7 +73,7 @@ JavaScript console to issue commands:
 ## Requirements
 
 * Shopware 5.3.4 or higher
-* PHP 7.0
+* PHP 5.6 or higher
 
 ## Dependencies
 
