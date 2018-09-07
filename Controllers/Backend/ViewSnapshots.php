@@ -106,7 +106,7 @@ class Shopware_Controllers_Backend_ViewSnapshots extends Shopware_Controllers_Ba
      */
     protected function getSnapshotStep($sessionFrom, $stepFrom)
     {
-        $qb = $this->getModelManager()->getDBALQueryBuilder();
+        $qb = $this->container->get('dbal_connection')->createQueryBuilder();
 
         $qb->select(['*'])
             ->from('view_snapshots')
