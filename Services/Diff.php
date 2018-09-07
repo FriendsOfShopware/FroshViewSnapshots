@@ -2,15 +2,10 @@
 
 namespace FroshViewSnapshots\Services;
 
-use FineDiff;
+use FroshViewSnapshots\Components\FineDiff;
 
 class Diff
 {
-    public function __construct()
-    {
-        require_once implode(DIRECTORY_SEPARATOR, [__DIR__, '..', 'lib', 'finediff', 'finediff.php']);
-    }
-
     /**
      * @param string $from
      * @param string $to
