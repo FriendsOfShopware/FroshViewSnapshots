@@ -1,7 +1,6 @@
 <?php
 
 use FroshViewSnapshots\Services\Diff;
-use Shopware\Components\Api\Exception\ParameterMissingException;
 
 /**
  * Class Shopware_Controllers_Backend_ViewSnapshots
@@ -60,7 +59,7 @@ class Shopware_Controllers_Backend_ViewSnapshots extends Shopware_Controllers_Ba
     }
 
     /**
-     * @throws ParameterMissingException
+     * @throws Enlight_Controller_Exception
      * @throws Exception
      */
     public function diffAction()
@@ -71,19 +70,15 @@ class Shopware_Controllers_Backend_ViewSnapshots extends Shopware_Controllers_Ba
         $stepTo = $this->Request()->getParam('stepTo');
 
         if (empty($sessionFrom)) {
-            throw new ParameterMissingException('sessionFrom is missing');
+            throw new Enlight_Controller_Exception('sessionFrom is missing');
         }
 
         if (empty($stepFrom)) {
-            throw new ParameterMissingException('stepFrom is missing');
-        }
-
-        if (empty($sessionTo)) {
-            throw new ParameterMissingException('sessionTo is missing');
+            throw new Enlight_Controller_Exception('stepFrom is missing');
         }
 
         if (empty($stepTo)) {
-            throw new ParameterMissingException('stepTo is missing');
+            throw new Enlight_Controller_Exception('stepTo is missing');
         }
 
         /** @var Diff $differ */
