@@ -1,0 +1,1 @@
+ALTER TABLE `view_snapshots` ADD `requestURI` varchar(255) COLLATE 'utf8_unicode_ci' NOT NULL AFTER `template`;

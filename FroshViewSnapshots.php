@@ -47,6 +47,10 @@ class FroshViewSnapshots extends Plugin
      */
     public function update(UpdateContext $context)
     {
+        $sql = file_get_contents($this->getPath() . '/Resources/sql/update.sql');
+
+        $this->container->get('dbal_connection')->query($sql);
+
         $context->scheduleClearCache(InstallContext::CACHE_LIST_ALL);
     }
 
@@ -58,5 +62,7 @@ class FroshViewSnapshots extends Plugin
         $sql = file_get_contents($this->getPath() . '/Resources/sql/uninstall.sql');
 
         $this->container->get('dbal_connection')->query($sql);
+
+        $context->scheduleClearCache(InstallContext::CACHE_LIST_ALL);
     }
 }
