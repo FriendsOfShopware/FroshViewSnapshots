@@ -21,6 +21,7 @@ articles within the basket or the order confirmation.
 * Backend component to view recorded sessions
 * View recorded snapshots
 * Step forward/backward between snapshots within a recorded session
+* Compare recordings and their steps
 
 ## Usage
 
@@ -72,4 +73,8 @@ JavaScript console to issue commands:
 ## Requirements
 
 * Shopware 5.3.4 or higher
-* PHP 7.0
+* PHP 5.6 or higher
+
+## Dependencies
+
+* Depends on [finediff](https://github.com/gorhill/PHP-FineDiff) by Raymond Hill
