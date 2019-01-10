@@ -26,6 +26,8 @@ class FroshViewSnapshots extends Plugin
 
     /**
      * @param InstallContext $context
+     *
+     * @throws \Exception
      */
     public function install(InstallContext $context)
     {
@@ -44,18 +46,27 @@ class FroshViewSnapshots extends Plugin
 
     /**
      * @param UpdateContext $context
+     *
+     * @throws \Exception
      */
     public function update(UpdateContext $context)
     {
-        $sql = file_get_contents($this->getPath() . '/Resources/sql/update.sql');
+        $currentVersion = $context->getCurrentVersion();
+        $sql = '';
 
-        $this->container->get('dbal_connection')->query($sql);
+        if (version_compare($currentVersion, '1.1.0', '<')) {
+            $sql .= file_get_contents($this->getPath() . '/Resources/sql/update.1.1.0.sql');
+
+            $this->container->get('dbal_connection')->query($sql);
+        }
 
         $context->scheduleClearCache(InstallContext::CACHE_LIST_ALL);
     }
 
     /**
      * @param UninstallContext $context
+     *
+     * @throws \Exception
      */
     public function uninstall(UninstallContext $context)
     {
