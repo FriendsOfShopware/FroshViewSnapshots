@@ -14,7 +14,10 @@ Ext.define('Shopware.apps.ViewSnapshots.view.Window', {
             {
                 xtype: 'view-snapshot-window',
                 store: me.store,
-                flex: 1
+                flex: 1,
+                selModel: new Ext.selection.CheckboxModel({
+                    checkOnly: true
+                })
             }
         ];
     

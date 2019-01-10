@@ -92,6 +92,7 @@ class Shopware_Controllers_Backend_ViewSnapshots extends Shopware_Controllers_Ba
             'data' => [
                 'sessionID' => $differ->diffPlain($dataFrom['sessionID'], $dataTo['sessionID'])->renderDiffToHTML(),
                 'template' => $differ->diffPlain($dataFrom['template'], $dataTo['template'])->renderDiffToHTML(),
+                'requestURI' => $differ->diffPlain($dataFrom['requestURI'], $dataTo['requestURI'])->renderDiffToHTML(),
                 'step' => $differ->diffPlain($dataFrom['step'], $dataTo['step'])->renderDiffToHTML(),
                 'variables' => $differ->diffSerialized($dataFrom['variables'], $dataTo['variables'])->renderDiffToHTML(),
                 'params' => $differ->diffJson($dataFrom['params'], $dataTo['params'])->renderDiffToHTML(),
