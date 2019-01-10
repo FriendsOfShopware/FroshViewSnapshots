@@ -9,6 +9,7 @@ class Diff
     /**
      * @param string $from
      * @param string $to
+     *
      * @return FineDiff
      */
     public function diffPlain($from, $to)
@@ -19,6 +20,7 @@ class Diff
     /**
      * @param string $from
      * @param string $to
+     *
      * @return FineDiff
      */
     public function diffSerialized($from, $to)
@@ -29,6 +31,7 @@ class Diff
     /**
      * @param string $from
      * @param string $to
+     *
      * @return FineDiff
      */
     public function diffJson($from, $to)
@@ -46,6 +49,7 @@ class Diff
     /**
      * @param array $from
      * @param array $to
+     *
      * @return FineDiff
      */
     public function diffArray(array $from, array $to)
@@ -58,6 +62,7 @@ class Diff
 
     /**
      * @param array $data
+     *
      * @return array
      */
     protected function sortArrayRecursive(array $data)
@@ -75,6 +80,7 @@ class Diff
 
     /**
      * @param string $serialized
+     *
      * @return string
      */
     protected function prettyPrintSerialized($serialized)

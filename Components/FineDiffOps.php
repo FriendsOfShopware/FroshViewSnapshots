@@ -33,8 +33,11 @@
  * THE SOFTWARE.
  *
  * @copyright Copyright 2011 (c) Raymond Hill (http://raymondhill.net/blog/?p=441)
- * @link http://www.raymondhill.net/finediff/
+ *
+ * @see http://www.raymondhill.net/finediff/
+ *
  * @version 0.6
+ *
  * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
@@ -42,6 +45,8 @@ namespace FroshViewSnapshots\Components;
 
 class FineDiffOps
 {
+    public $edits = [];
+
     public function appendOpcode($opcode, $from, $from_offset, $from_len)
     {
         if ($opcode === 'c') {
@@ -54,6 +59,4 @@ class FineDiffOps
             }
         }
     }
-
-    public $edits = array();
 }

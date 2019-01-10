@@ -33,8 +33,11 @@
  * THE SOFTWARE.
  *
  * @copyright Copyright 2011 (c) Raymond Hill (http://raymondhill.net/blog/?p=441)
- * @link http://www.raymondhill.net/finediff/
+ *
+ * @see http://www.raymondhill.net/finediff/
+ *
  * @version 0.6
+ *
  * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
@@ -44,10 +47,40 @@ namespace FroshViewSnapshots\Components;
  * FineDiff class
  *
  * TODO: Document
- *
  */
 class FineDiff
 {
+    /**
+     * Stock granularity stacks and delimiters
+     */
+    const paragraphDelimiters = "\n\r";
+    const sentenceDelimiters = ".\n\r";
+    const wordDelimiters = " \t.\n\r";
+    const characterDelimiters = '';
+    public static $paragraphGranularity = [
+        FineDiff::paragraphDelimiters,
+    ];
+    public static $sentenceGranularity = [
+        FineDiff::paragraphDelimiters,
+        FineDiff::sentenceDelimiters,
+    ];
+    public static $wordGranularity = [
+        FineDiff::paragraphDelimiters,
+        FineDiff::sentenceDelimiters,
+        FineDiff::wordDelimiters,
+    ];
+    public static $characterGranularity = [
+        FineDiff::paragraphDelimiters,
+        FineDiff::sentenceDelimiters,
+        FineDiff::wordDelimiters,
+        FineDiff::characterDelimiters,
+    ];
+
+    public static $textStack = [
+        '.',
+        " \t.\n\r",
+        '',
+    ];
 
     /**------------------------------------------------------------------------
      *
@@ -66,7 +99,7 @@ class FineDiff
     {
         // setup stack for generic text documents by default
         $this->granularityStack = $granularityStack ? $granularityStack : FineDiff::$characterGranularity;
-        $this->edits = array();
+        $this->edits = [];
         $this->from_text = $from_text;
         $this->doDiff($from_text, $to_text);
     }
@@ -78,10 +111,11 @@ class FineDiff
 
     public function getOpcodes()
     {
-        $opcodes = array();
+        $opcodes = [];
         foreach ($this->edits as $edit) {
             $opcodes[] = $edit->getOpcode();
         }
+
         return implode('', $opcodes);
     }
 
@@ -107,6 +141,7 @@ class FineDiff
             }
             $in_offset += $n;
         }
+
         return ob_get_clean();
     }
 
@@ -117,6 +152,7 @@ class FineDiff
     public static function getDiffOpcodes($from, $to, $granularities = null)
     {
         $diff = new FineDiff($from, $to, $granularities);
+
         return $diff->getOpcodes();
     }
 
@@ -126,7 +162,8 @@ class FineDiff
     public static function getDiffOpsFromOpcodes($opcodes)
     {
         $diffops = new FineDiffOps();
-        FineDiff::renderFromOpcodes(null, $opcodes, array($diffops, 'appendOpcode'));
+        FineDiff::renderFromOpcodes(null, $opcodes, [$diffops, 'appendOpcode']);
+
         return $diffops->edits;
     }
 
@@ -136,7 +173,8 @@ class FineDiff
     public static function renderToTextFromOpcodes($from, $opcodes)
     {
         ob_start();
-        FineDiff::renderFromOpcodes($from, $opcodes, array('FineDiff', 'renderToTextFromOpcode'));
+        FineDiff::renderFromOpcodes($from, $opcodes, ['FineDiff', 'renderToTextFromOpcode']);
+
         return ob_get_clean();
     }
 
@@ -146,7 +184,8 @@ class FineDiff
     public static function renderDiffToHTMLFromOpcodes($from, $opcodes)
     {
         ob_start();
-        FineDiff::renderFromOpcodes($from, $opcodes, array('FineDiff', 'renderDiffToHTMLFromOpcode'));
+        FineDiff::renderFromOpcodes($from, $opcodes, ['FineDiff', 'renderDiffToHTMLFromOpcode']);
+
         return ob_get_clean();
     }
 
@@ -184,39 +223,6 @@ class FineDiff
             }
         }
     }
-
-    /**
-     * Stock granularity stacks and delimiters
-     */
-
-    const paragraphDelimiters = "\n\r";
-    public static $paragraphGranularity = array(
-        FineDiff::paragraphDelimiters
-    );
-    const sentenceDelimiters = ".\n\r";
-    public static $sentenceGranularity = array(
-        FineDiff::paragraphDelimiters,
-        FineDiff::sentenceDelimiters
-    );
-    const wordDelimiters = " \t.\n\r";
-    public static $wordGranularity = array(
-        FineDiff::paragraphDelimiters,
-        FineDiff::sentenceDelimiters,
-        FineDiff::wordDelimiters
-    );
-    const characterDelimiters = "";
-    public static $characterGranularity = array(
-        FineDiff::paragraphDelimiters,
-        FineDiff::sentenceDelimiters,
-        FineDiff::wordDelimiters,
-        FineDiff::characterDelimiters
-    );
-
-    public static $textStack = array(
-        ".",
-        " \t.\n\r",
-        ""
-    );
 
     /**------------------------------------------------------------------------
      *
@@ -291,7 +297,7 @@ class FineDiff
             return FineDiff::doCharDiff($from_text, $to_text);
         }
 
-        $result = array();
+        $result = [];
 
         // fragment-level diffing
         $from_text_len = strlen($from_text);
@@ -299,12 +305,11 @@ class FineDiff
         $from_fragments = FineDiff::extractFragments($from_text, $delimiters);
         $to_fragments = FineDiff::extractFragments($to_text, $delimiters);
 
-        $jobs = array(array(0, $from_text_len, 0, $to_text_len));
+        $jobs = [[0, $from_text_len, 0, $to_text_len]];
 
-        $cached_array_keys = array();
+        $cached_array_keys = [];
 
         while ($job = array_pop($jobs)) {
-
             // get the segments which must be diff'ed
             list($from_segment_start, $from_segment_end, $to_segment_start, $to_segment_end) = $job;
 
@@ -328,7 +333,7 @@ class FineDiff
 
             $from_base_fragment_index = $from_segment_start;
 
-            $cached_array_keys_for_current_segment = array();
+            $cached_array_keys_for_current_segment = [];
 
             while ($from_base_fragment_index < $from_segment_end) {
                 $from_base_fragment = $from_fragments[$from_base_fragment_index];
@@ -343,7 +348,7 @@ class FineDiff
                     }
                     // get only indices which falls within current segment
                     if ($to_segment_start > 0 || $to_segment_end < $to_text_len) {
-                        $to_fragment_indices = array();
+                        $to_fragment_indices = [];
                         foreach ($to_all_fragment_indices as $to_fragment_index) {
                             if ($to_fragment_index < $to_segment_start) {
                                 continue;
@@ -364,7 +369,7 @@ class FineDiff
                 foreach ($to_fragment_indices as $to_base_fragment_index) {
                     $fragment_index_offset = $from_base_fragment_length;
                     // iterate until no more match
-                    for (; ;) {
+                    for (;;) {
                         $fragment_from_index = $from_base_fragment_index + $fragment_index_offset;
                         if ($fragment_from_index >= $from_segment_end) {
                             break;
@@ -399,14 +404,14 @@ class FineDiff
             }
 
             if ($best_copy_length) {
-                $jobs[] = array($from_segment_start, $best_from_start, $to_segment_start, $best_to_start);
+                $jobs[] = [$from_segment_start, $best_from_start, $to_segment_start, $best_to_start];
                 $result[$best_from_start * 4 + 2] = new FineDiffCopyOp($best_copy_length);
-                $jobs[] = array(
+                $jobs[] = [
                     $best_from_start + $best_copy_length,
                     $from_segment_end,
                     $best_to_start + $best_copy_length,
-                    $to_segment_end
-                );
+                    $to_segment_end,
+                ];
             } else {
                 $result[$from_segment_start * 4] = new FineDiffReplaceOp($from_segment_length,
                     substr($to_text, $to_segment_start, $to_segment_length));
@@ -414,6 +419,7 @@ class FineDiff
         }
 
         ksort($result, SORT_NUMERIC);
+
         return array_values($result);
     }
 
@@ -435,8 +441,8 @@ class FineDiff
      */
     private static function doCharDiff($from_text, $to_text)
     {
-        $result = array();
-        $jobs = array(array(0, strlen($from_text), 0, strlen($to_text)));
+        $result = [];
+        $jobs = [[0, strlen($from_text), 0, strlen($to_text)]];
         while ($job = array_pop($jobs)) {
             // get the segments which must be diff'ed
             list($from_segment_start, $from_segment_end, $to_segment_start, $to_segment_end) = $job;
@@ -490,14 +496,14 @@ class FineDiff
             }
             // match found
             if ($copy_len) {
-                $jobs[] = array($from_segment_start, $from_copy_start, $to_segment_start, $to_copy_start);
+                $jobs[] = [$from_segment_start, $from_copy_start, $to_segment_start, $to_copy_start];
                 $result[$from_copy_start * 4 + 2] = new FineDiffCopyOp($copy_len);
-                $jobs[] = array(
+                $jobs[] = [
                     $from_copy_start + $copy_len,
                     $from_segment_end,
                     $to_copy_start + $copy_len,
-                    $to_segment_end
-                );
+                    $to_segment_end,
+                ];
             } // no match,  so delete all, insert all
             else {
                 $result[$from_segment_start * 4] = new FineDiffReplaceOp($from_segment_len,
@@ -505,6 +511,7 @@ class FineDiff
             }
         }
         ksort($result, SORT_NUMERIC);
+
         return array_values($result);
     }
 
@@ -524,11 +531,12 @@ class FineDiff
         if (empty($delimiters)) {
             $chars = str_split($text, 1);
             $chars[strlen($text)] = '';
+
             return $chars;
         }
-        $fragments = array();
+        $fragments = [];
         $start = $end = 0;
-        for (; ;) {
+        for (;;) {
             $end += strcspn($text, $delimiters, $end);
             $end += strspn($text, $delimiters, $end);
             if ($end === $start) {
@@ -538,6 +546,7 @@ class FineDiff
             $start = $end;
         }
         $fragments[$start] = '';
+
         return $fragments;
     }
 
@@ -559,7 +568,7 @@ class FineDiff
             if ($opcode === 'd') {
                 $deletion = substr($from, $from_offset, $from_len);
                 if (strcspn($deletion, " \n\r") === 0) {
-                    $deletion = str_replace(array("\n", "\r"), array('\n', '\r'), $deletion);
+                    $deletion = str_replace(["\n", "\r"], ['\n', '\r'], $deletion);
                 }
                 echo '<del>', htmlentities($deletion), '</del>';
             } else /* if ( $opcode === 'i' ) */ {

@@ -33,8 +33,11 @@
  * THE SOFTWARE.
  *
  * @copyright Copyright 2011 (c) Raymond Hill (http://raymondhill.net/blog/?p=441)
- * @link http://www.raymondhill.net/finediff/
+ *
+ * @see http://www.raymondhill.net/finediff/
+ *
  * @version 0.6
+ *
  * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
@@ -62,6 +65,7 @@ class FineDiffCopyOp extends FineDiffOp
         if ($this->len === 1) {
             return 'c';
         }
+
         return "c{$this->len}";
     }
 

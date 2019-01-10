@@ -111,7 +111,7 @@ class Dispatch implements SubscriberInterface
                 'variables' => $variables,
                 'params' => $params,
                 'step' => $step,
-                'requestURI' => $request->getPathInfo()
+                'requestURI' => $request->getPathInfo(),
             ]
         );
     }
