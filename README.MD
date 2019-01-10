@@ -23,6 +23,12 @@ articles within the basket or the order confirmation.
 * Step forward/backward between snapshots within a recorded session
 * Compare recordings and their steps
 
+### New with v. 1.1.0
+
+* View complete diffs of raw data by selecting two snapshots in the backend app
+
+_Note: The library used to generate diffs is [FineDiff](https://github.com/gorhill/PHP-FineDiff) and it was integrated into this project as it is not available as composer package (yet)_
+
 ## Usage
 
 After installing the plugin through the plugin manager, you can find
