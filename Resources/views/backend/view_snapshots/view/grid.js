@@ -39,12 +39,14 @@ Ext.define('Shopware.apps.ViewSnapshots.view.Grid', {
             },
             {
                 xtype: 'actioncolumn',
-                width: 30,
+                width: 60,
                 items: me.getActionColumnItems()
             }
         ];
     },
     getActionColumnItems: function () {
+        var me = this;
+
         return [
                 {
                     iconCls: 'x-action-col-icon sprite-globe--arrow',
@@ -54,6 +56,13 @@ Ext.define('Shopware.apps.ViewSnapshots.view.Grid', {
                             record = store.getAt(rowIndex);
 
                         window.open(record.get('url'), '_blank');
+                    }
+                },
+                {
+                    iconCls: 'x-action-col-icon sprite-minus-circle-frame',
+                    tooltip: 'Delete',
+                    handler: function (view, rowIndex, colIndex, item) {
+                        me.fireEvent('delete', view, rowIndex, colIndex, item);
                     }
                 }
             ];

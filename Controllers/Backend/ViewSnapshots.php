@@ -124,4 +124,23 @@ class Shopware_Controllers_Backend_ViewSnapshots extends Shopware_Controllers_Ba
 
         return $qb->execute()->fetch(PDO::FETCH_ASSOC);
     }
+
+    /**
+     * @throws \Exception
+     */
+    public function deleteAction()
+    {
+        $id = (int) $this->Request()->get('id');
+
+        $this->container->get('dbal_connection')->delete(
+            'view_snapshots',
+            [
+                'id' => $id,
+            ]
+        );
+
+        $this->View()->assign(
+            ['success' => true]
+        );
+    }
 }

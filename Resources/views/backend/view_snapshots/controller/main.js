@@ -20,7 +20,8 @@ Ext.define('Shopware.apps.ViewSnapshots.controller.Main', {
 
         me.control({
             'view-snapshot-window': {
-                'select': this.onGridSelect
+                'select': me.onGridSelect,
+                'delete': me.onSnapshotDelete
             }
         });
 
@@ -110,6 +111,26 @@ Ext.define('Shopware.apps.ViewSnapshots.controller.Main', {
 
                     loadMask.hide();
                 }
+            });
+        }
+    },
+
+    onSnapshotDelete: function (view, rowIndex) {
+        var me = this,
+            store = me.getStore('Snapshot');
+
+        me.record = store.getAt(rowIndex);
+
+        if (me.record instanceof Ext.data.Model && me.record.get('id') > 0) {
+            Ext.MessageBox.confirm('Delete?', 'Are you sure you want to delete the snapshot?', function (response) {
+                if (response !== 'yes') {
+                    return;
+                }
+                me.record.destroy({
+                    callback: function() {
+                        store.load();
+                    }
+                });
             });
         }
     }
