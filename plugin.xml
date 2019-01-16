@@ -37,4 +37,14 @@
         <changes lang="de">Initial Release</changes>
         <changes lang="en">Initial Release</changes>
     </changelog>
+    <description>
+        <![CDATA[
+            Make snapshots from views
+        ]]>
+    </description>
+    <description lang="de">
+        <![CDATA[
+            Ermöglicht es Momentaufnahmen von Seiten zu erstellen
+        ]]>
+    </description>
 </plugin>
