@@ -21,6 +21,13 @@ articles within the basket or the order confirmation.
 * Backend component to view recorded sessions
 * View recorded snapshots
 * Step forward/backward between snapshots within a recorded session
+* Compare recordings and their steps
+
+### New with v. 1.1.0
+
+* View complete diffs of raw data by selecting two snapshots in the backend app
+
+_Note: The library used to generate diffs is [FineDiff](https://github.com/gorhill/PHP-FineDiff) and it was integrated into this project as it is not available as composer package (yet)_
 
 ## Usage
 
@@ -72,4 +79,8 @@ JavaScript console to issue commands:
 ## Requirements
 
 * Shopware 5.3.4 or higher
-* PHP 7.0
+* PHP 5.6 or higher
+
+## Dependencies
+
+* Depends on [finediff](https://github.com/gorhill/PHP-FineDiff) by Raymond Hill

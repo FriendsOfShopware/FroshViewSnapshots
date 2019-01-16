@@ -3,12 +3,35 @@
     <label lang="de">View Snapshots</label>
     <label lang="en">View Snapshots</label>
 
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <copyright>Friends of Shopware</copyright>
     <license>MIT</license>
     <link>https://friendsofshopware.github.io/</link>
     <author>Friends of Shopware</author>
     <compatibility minVersion="5.4.0" />
+
+    <changelog version="1.1.0">
+        <changes lang="de">
+            <![CDATA[
+                <ul>
+                    <li>Spalte hinzugefügt zur Aufnahme von Snapshot Request URIs</li>
+                    <li>Funktionalität hinzugefügt zur Ansicht eines Diff von Rohdaten zweier Snapshots</li>
+                    <li>Funktionalität hinzugefügt zum Löschen von Snapshot-Einträgen über die Backend App</li>
+                    <li>Functional Tests hinzugefügt</li>
+                </ul>
+            ]]>
+        </changes>
+        <changes lang="en">
+            <![CDATA[
+                <ul>
+                    <li>Added column and recording of snapshot request URIs</li>
+                    <li>Added functionality to view diff of raw snapshot data from backend app</li>
+                    <li>Added functionality to delete snapshot entries from backend app</li>
+                    <li>Added functional tests</li>
+                </ul>
+            ]]>
+        </changes>
+    </changelog>
 
     <changelog version="1.0.0">
         <changes lang="de">Initial Release</changes>
