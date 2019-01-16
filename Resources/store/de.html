@@ -1,0 +1,65 @@
+<div>View Snapshots ist ein Plugin das es erlaubt Seitenaufrufe in Form von reinen Daten (URL Parametern, Template-Variablen,
+    verdendetem Template, usw) als Momentaufnahme zu speichern und in der Folge unbegrenzt oft und weitestgehend identisch
+    zur reproduzieren.
+</div>
+<div><br></div><h2>Ziel</h2>
+<div>
+    Die aufgenommenen Snapshots können über eine Backend-App aufgerufen und in ursprünglicher Form betrachtet werden.
+    Dadurch können Anpassungen am Template, CSS oder JavaScript unter vorher aufgezeichneten Zuständen getestet werden,
+    bspw. eine Kombination aus mehreren Produkten im Warenkorb.
+</div>
+<div><br></div><h2>Features</h2>
+<div>
+    <ul>
+        <li>Start/stop der Aufnahme einer Session zu jeder Zeit</li>
+        <li>Backend Anwendung zum Ansehen und Verwalten aufgenommener Sessions</li>
+        <li>Wiederherstellung aufgenommener Snapshots</li>
+        <li>Schritt vorwärts/zurück Funktion innerhalb mehrerer Aufnahmen einer Session</li>
+        <li>Vergleich der Rohdaten von Aufnahmen in Form von Diffs</li>
+    </ul>
+</div>
+<div><br></div><h2>Nutzung</h2>
+<div>
+    <p>Nach der Installation finden Sie die Backend Anwendung unter dem Menüpunkt Einstellungen.</p>
+
+    <p>Die Backend Anwendung zeigt alle aufgenommenen Sessions.</p>
+
+    <p>Um damit zu beginnen, eine Session aufzunehmen, verwenden Sie die JavaScript Konsole innerhalb der
+        Entwicklerwerkezeuge Ihres Browsers und verwenden Sie dort folgende Befehle:</p>
+
+    <strong>Aufname starten</strong>
+
+    <pre>
+    > snapshots.record()
+    ▶️️ Recording of session starting next request. Session ID: 0sorspi2md1j2vpt9tn9po3om1
+    </pre>
+
+    <strong>Aufnahme stoppen</strong>
+
+    <pre>
+    > snapshots.stop()
+    ✋️️ Stopped recording current session.
+    </pre>
+
+    <h2>Beim Abspielen aufgenommener Sessions</h2>
+
+    <strong>Springe zu nächstem Snappshot innerhalb aufgenommener Session</strong>
+
+    <pre>
+    > snapshots.next()
+    </pre>
+
+    <strong>Springe zu vorgherigem Snapshot</strong>
+
+    <pre>
+    > snapshots.prev()
+    </pre>
+</div>
+<div><br></div>
+<div>Das Plugin wird von der Github Organization
+    <a href="https://github.com/FriendsOfShopware/" target="_blank" style="font-size: 0.9375rem;"> FriendsOfShopware</a>&nbsp;entwickelt.&nbsp;
+    <span style="font-size: 0.9375rem;">Maintainer des Plugins ist:&nbsp;</span><a href="https://github.com/dneustadt"
+                                                                                   style="font-size: 0.9375rem;">David Neustadt</a></div>
+<div>Das Github Repository ist zu finden <a href="https://github.com/FriendsOfShopware/FroshHttpCacheIpExclude">hier</a></div>
+<div><a href="https://github.com/FriendsOfShopware/FroshHttpCacheIpExclude/issues/new">Bei Fragen / Fehlern bitte ein Github
+    Issue erstellen</a></div>

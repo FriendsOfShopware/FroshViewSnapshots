@@ -1,0 +1,72 @@
+<div>View Snapshots is a plugin for shopware that allows you to record/log requests
+    continiously. It will record snapshots of variables passed to the view and
+    will persist them in serialized form to the database. Also persisted is the
+    template path, session ID and steps taken since the start of recording.
+</div>
+<div><br></div><h2>Goal</h2>
+<div>
+    By having a snapshot of the template, including it's data, you can review most
+    requests with the more or less exact same outcome as the original request.
+    Therefore you can customize your templates, css, JavaScript and check your
+    changes against a previously recorded situation, e.g. a variety of different
+    articles within the basket or the order confirmation.
+</div>
+<div><br></div><h2>Features</h2>
+<div>
+    <ul>
+        <li>Start/stop recording sessions at any time</li>
+        <li>Backend component to view recorded sessions</li>
+        <li>View recorded snapshots</li>
+        <li>Step forward/backward between snapshots within a recorded session</li>
+        <li>Compare recordings and their steps</li>
+        <li>View complete diffs of raw data by selecting two snapshots in the backend app</li>
+    </ul>
+</div>
+<div><br></div><h2>Usage</h2>
+<div>
+    <p>After installing the plugin through the plugin manager, you can find
+        the accompanying backend app under the Configuration menu.</p>
+
+    <p>The backend app will list all recorded sessions.</p>
+
+    <p>To start a recording session, request a frontend page and use the
+        JavaScript console to issue commands:</p>
+
+    <strong>Start recording</strong>
+
+    <pre>
+    > snapshots.record()
+    ▶️️ Recording of session starting next request. Session ID: 0sorspi2md1j2vpt9tn9po3om1
+    </pre>
+
+    <strong>Stop recording</strong>
+
+    <pre>
+    > snapshots.stop()
+    ✋️️ Stopped recording current session.
+    </pre>
+
+    <h2>When viewing a recorded session</h2>
+
+    <strong>View next step in recorded session</strong>
+
+    <pre>
+    > snapshots.next()
+    </pre>
+
+    <strong>View previous step in recorded session</strong>
+
+    <pre>
+    > snapshots.prev()
+    </pre>
+</div>
+<div><br></div>
+<div>This plugin is part of the Github Organization&nbsp;
+    <a href="https://github.com/FriendsOfShopware/" target="_blank"
+       style="font-size: 0.9375rem;">FriendsOfShopware</a>&nbsp;.&nbsp;
+    <span style="font-size: 0.9375rem;">Maintainer of the plugin is:&nbsp;</span><a href="https://github.com/dneustadt"
+                                                                                      style="font-size: 0.9375rem;">David Neustadt</a></div>
+<div><span style="font-size: 0.9375rem;">You can find the Github repository&nbsp;</span><a
+        href="https://github.com/FriendsOfShopware/FroshHttpCacheIpExclude" style="font-size: 0.9375rem;">here</a></div>
+<div><a href="https://github.com/FriendsOfShopware/FroshHttpCacheIpExclude/issues/new">For questions or bugs please create a
+    Github Issue</a></div>
