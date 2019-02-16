@@ -46,11 +46,14 @@ class Dispatch implements SubscriberInterface
 
     /**
      * @param \Enlight_Controller_ActionEventArgs $args
+     *
+     * @throws \Exception
      */
     public function onPostDispatchSecureFrontend(\Enlight_Controller_ActionEventArgs $args)
     {
         $view = $args->getSubject()->View();
         $request = $args->getSubject()->Request();
+        $response = $args->getSubject()->Response();
         $params = $request->getParams();
         $sessionID = $this->session->get('sessionId');
 
@@ -70,7 +73,8 @@ class Dispatch implements SubscriberInterface
         if (
             $snapshotSessionID ||
             !$isSessionRecorded ||
-            $request->isXmlHttpRequest()
+            $request->isXmlHttpRequest() ||
+            in_array($response->getHttpResponseCode(), range(300, 308))
         ) {
             return;
         }

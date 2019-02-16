@@ -1,3 +1,7 @@
+## [1.1.1]
+
+- Fixes unecessary recordings of redirects
+
 ## [1.1.0]
 
 - Added column and recording of snapshot request URIs
