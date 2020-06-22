@@ -1,7 +1,7 @@
 # View Snapshots
 
 [![Travis CI](https://travis-ci.org/FriendsOfShopware/FroshViewSnapshots.svg?branch=master)](https://travis-ci.org/FriendsOfShopware/FroshViewSnapshots)
-[![Download @ Community Store](https://img.shields.io/badge/endpoint.svg?url=https://api.friendsofshopware.de/FroshViewSnapshots)](https://store.shopware.com/en/frosh54349549179f/view-snapshots.html)
+[![Download @ Community Store](https://img.shields.io/badge/endpoint.svg?url=https://api.friendsofshopware.com/FroshViewSnapshots)](https://store.shopware.com/en/frosh54349549179f/view-snapshots.html)
 
 View Snapshots is a plugin for shopware that allows you to record/log requests
 continiously. It will record snapshots of variables passed to the view and
